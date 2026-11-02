@@ -1,9 +1,9 @@
 {
  "ok": true,
- "generated": "2026-11-02T08:05:00.000Z",
+ "generated": "2026-11-02T08:25:00.000Z",
  "snapshot": true,
  "snapshot_date": "2 Nov 2026",
- "count": 68,
+ "count": 69,
  "config": {
   "shop_name": "GeekGoodies",
   "whatsapp": 919226525940,
@@ -799,6 +799,19 @@
    "asin": "B01M1CTKPI",
    "amazon_price": 240,
    "amazon_date": "2 Nov 2026"
+  },
+  {
+   "no": 69,
+   "name": "Moustache Glasses Straw",
+   "section": "Magnets, Key Rings & Party",
+   "price": 39,
+   "gst": true,
+   "stock_shown": 430,
+   "photos": 1,
+   "desc": "Moustache-and-glasses party straw",
+   "asin": "",
+   "amazon_price": "",
+   "amazon_date": ""
   },
   {
    "no": 70,
