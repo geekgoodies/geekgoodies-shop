@@ -370,27 +370,36 @@ a{ color:inherit }
   }
   function valid(d) { return d && d.ok && Array.isArray(d.products) && d.products.length > 0; }
 
+  // Live list first. If it is not back within TIMEOUT_MS (a "cold" script start can take 6-8 s),
+  // show the saved copy with a banner, but keep waiting: when the live list arrives, it replaces the copy.
   function load() {
     renderSkeleton();
     var live = EXEC + '?cl=' + encodeURIComponent(clientLabel()) + (TEST ? '&test=1' : '');
-    var first = FORCE_FALLBACK ? Promise.reject(new Error('fallback forced')) : fetchJSON(live, TIMEOUT_MS);
-    first.then(function (d) {
-      if (!valid(d)) throw new Error('empty');
-      start(d, false);
-    }).catch(function (err) {
-      if (window.console) console.warn('Live list failed, using saved copy:', err && err.message);
+    var liveDone = false, fallbackShown = false, fallbackStarted = false;
+    function useFallback(why) {
+      if (liveDone || fallbackStarted) return;
+      fallbackStarted = true;
+      if (window.console) console.warn('Live list not ready, showing saved copy:', why);
       fetchJSON(FALLBACK + '?v=' + Date.now(), 10000).then(function (d) {
         if (!valid(d)) throw new Error('empty fallback');
-        start(d, true);
+        if (!liveDone) { fallbackShown = true; start(d, true); }
       }).catch(function () {
+        if (liveDone) return;
         $('grid').innerHTML = '<div class="empty"><b>The list could not load.</b>Check your internet and try again, or message us on WhatsApp for the list.<br><button type="button" onclick="location.reload()">Try again</button></div>';
         $('result').textContent = '';
         renderFoot();
       });
-    });
+    }
+    if (FORCE_FALLBACK) { useFallback('forced'); return; }
+    var timer = setTimeout(function () { useFallback('slow (over ' + TIMEOUT_MS / 1000 + ' s)'); }, TIMEOUT_MS);
+    fetchJSON(live, 25000).then(function (d) {
+      if (!valid(d)) throw new Error('empty');
+      liveDone = true; clearTimeout(timer);
+      start(d, false, fallbackShown);
+    }).catch(function (err) { clearTimeout(timer); useFallback(err && err.message); });
   }
 
-  function start(d, isFallback) {
+  function start(d, isFallback, upgraded) {
     if (d.config) Object.keys(d.config).forEach(function (k) { if (d.config[k] !== '' && d.config[k] != null) CFG[k] = d.config[k]; });
     if (d.config && 'banner' in d.config) CFG.banner = d.config.banner;
     products = d.products.filter(function (p) { return p && Number.isFinite(Number(p.no)) && Number(p.price) > 0; })
@@ -407,10 +416,12 @@ a{ color:inherit }
     if (CFG.banner) msg.push(String(CFG.banner));
     $('bannertxt').textContent = msg.join(' ');
     $('banner').hidden = !msg.length;
-    window.__gg = { source: isFallback ? 'fallback' : 'live', count: products.length };
+    window.__gg = { source: isFallback ? 'fallback' : 'live', count: products.length, upgraded: !!upgraded };
 
+    var y = window.scrollY;
     renderStatic(); renderChips(); renderGrid(); renderCartUI(); save();
-    routeFromHash();
+    if (upgraded) { window.scrollTo(0, y); if (window.console) console.info('Live list arrived, saved copy replaced'); }
+    else routeFromHash();
   }
 
   /* ---------------- rendering: page ---------------- */
