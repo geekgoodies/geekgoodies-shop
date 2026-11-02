@@ -124,7 +124,9 @@ a{ color:inherit }
 .pr b{ color:var(--price); font-weight:800; font-size:18px; font-variant-numeric:tabular-nums }
 .pr small{ color:var(--soft); font-size:11.5px; font-weight:600 }
 .amz{ margin-top:4px; min-height:22px }
-.amz a{ display:inline-flex; align-items:center; gap:3px; color:var(--green); background:var(--green-bg); padding:2px 8px; border-radius:999px; font-size:11.5px; font-weight:700; text-decoration:none; font-variant-numeric:tabular-nums }
+.amz .nw{ white-space:nowrap; display:inline-flex; align-items:center; gap:3px }
+@media (max-width:360px){ .amz .on{ display:none } }
+.amz a{ display:inline-flex; flex-wrap:wrap; line-height:1.35; align-items:center; gap:2px 4px; color:var(--green); background:var(--green-bg); padding:2px 8px; border-radius:999px; font-size:11.5px; font-weight:700; text-decoration:none; font-variant-numeric:tabular-nums }
 .card .act{ margin-top:auto; padding-top:8px }
 .addbtn{ width:100%; min-height:44px; border:0; border-radius:10px; background:var(--green); color:#fff; font-weight:800; font-size:14px }
 .step{ display:flex; align-items:center; justify-content:space-between; min-height:44px; border-radius:10px; background:var(--green-bg); color:var(--green) }
@@ -363,6 +365,7 @@ a{ color:inherit }
   function stockLimit(p) { return p.stock_shown === 'few' ? 9 : (typeof p.stock_shown === 'number' ? p.stock_shown : Infinity); }
   function isFew(p) { return p.stock_shown === 'few'; }
   function hasAmz(p) { return !!(p.asin && String(p.asin).trim()); }
+  function amzPack(p) { var n = (String(p.amazon_pack || '').match(/\d+/) || [])[0]; return n ? ' for ' + n : ''; }   // Amazon listing is a pack ("set of 12") -> card says "₹999 for 12"
   function amzUrl(p) { return 'https://www.amazon.in/dp/' + encodeURIComponent(String(p.asin).trim()); }
   function toInt(v) { var n = Math.floor(Number(String(v).replace(/[^\d]/g, ''))); return isFinite(n) ? n : 0; }
   var arrowSvg = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8M9 8h7v7"/></svg>';
@@ -518,7 +521,7 @@ a{ color:inherit }
       (isFew(p) ? '<span class="few">Few left</span>' : '') + '<span class="cno">No. ' + p.no + '</span></button>' +
       '<a class="nm" href="#p' + p.no + '" data-open="' + p.no + '">' + esc(p.name) + '</a>' +
       '<div class="pr"><b>' + rs(p.price) + '</b>' + (p.gst ? '<small>+ GST</small>' : '') + '</div>' +
-      '<div class="amz">' + (hasAmz(p) ? '<a href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow">On Amazon' + (p.amazon_price !== '' && p.amazon_price != null ? ' ' + rs(p.amazon_price) : '') + ' ' + arrowSvg + '</a>' : '') + '</div>' +
+      '<div class="amz">' + (hasAmz(p) ? '<a href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow"><span class="nw"><span class="on">On</span>Amazon</span> <span class="nw">' + (p.amazon_price !== '' && p.amazon_price != null ? rs(p.amazon_price) + amzPack(p) + ' ' : '') + arrowSvg + '</span></a>' : '') + '</div>' +
       '<div class="act" id="act' + p.no + '">' + actHtml(p) + '</div></article>';
   }
   function renderGrid() {
@@ -658,7 +661,7 @@ a{ color:inherit }
       '<div class="dots" id="dots">' + (n > 1 ? dots : '') + '</div></div>' +
       '<div class="pbody"><div class="sec">' + esc(p.section) + '</div><h2 id="ptitle">' + esc(p.name) + '</h2>' +
       '<div class="pr"><b>' + rs(p.price) + '</b><small>each' + (p.gst ? ' + GST' : '') + '</small></div>' +
-      (hasAmz(p) ? '<a class="amzbtn" href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow">On Amazon' + (p.amazon_price !== '' && p.amazon_price != null ? ' ' + rs(p.amazon_price) + ' incl. GST' : '') + ' · see listing ' + arrowSvg + '</a>' : '') +
+      (hasAmz(p) ? '<a class="amzbtn" href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow">On Amazon' + (p.amazon_price !== '' && p.amazon_price != null ? ' ' + rs(p.amazon_price) + ' incl. GST' + (amzPack(p) ? ' for a ' + String(p.amazon_pack).trim() : '') : '') + ' · see listing ' + arrowSvg + '</a>' : '') +
       '<div class="stock' + (isFew(p) ? ' low' : '') + '"><i></i>' + stock + '</div>' +
       (p.desc ? '<p class="desc">' + esc(p.desc) + '</p>' : '') +
       '<div class="meta">Mix with any other design · No minimum per design' + (hasAmz(p) && p.amazon_date ? '<br>Amazon price as on ' + esc(p.amazon_date) : '') + '</div></div>';
