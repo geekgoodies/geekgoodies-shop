@@ -7,11 +7,47 @@
 <meta name="theme-color" content="#FFFFFF">
 <meta name="description" content="GeekGoodies, Nashik — gift and décor stock clearance at wholesale prices. Order on WhatsApp.">
 <title>GeekGoodies — clearance list</title>
+<!-- link preview (WhatsApp / other apps) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GeekGoodies">
+<meta property="og:title" content="GeekGoodies — gift & décor stock clearance">
+<meta property="og:description" content="Gift and décor at wholesale clearance prices, Nashik. Mix any designs, any quantity. Order on WhatsApp.">
+<meta property="og:url" content="https://geekgoodies.github.io/geekgoodies-shop/">
+<meta property="og:image" content="https://geekgoodies.github.io/geekgoodies-shop/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2C44'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23E18A2C'%3EG%3C/text%3E%3C/svg%3E">
+<script>
+/* Start the live product list as early as possible (before the font and the rest of the page load). */
+(function () {
+  var EXEC = 'https://script.google.com/macros/s/AKfycbxR8AuxpKtwFU_bJXM82Ap86DMsUZlgHDbKXJY_lQXLJzxdZjhZM7TDV_sG4UMdHBB0/exec';
+  var test = /[?&]test=1(&|$)/.test(location.search), ua = navigator.userAgent;
+  var label = (/WhatsApp/i.test(ua) ? 'WhatsApp in-app' : /; wv\)/.test(ua) ? 'Android in-app (WebView)' :
+      /FBAN|FBAV|Instagram/i.test(ua) ? 'FB/Insta in-app' : /CriOS|Chrome/i.test(ua) ? 'Chrome' :
+      /Safari/i.test(ua) ? 'Safari' : 'Other') + ' · ' +
+      (/Android/i.test(ua) ? 'Android' : /iPhone|iPad/i.test(ua) ? 'iOS' : /Windows/i.test(ua) ? 'Windows' : /Mac/i.test(ua) ? 'Mac' : 'other OS') +
+      ' · shop v1.1' + (test ? ' · test' : '');
+  window.__ggEXEC = EXEC; window.__ggTEST = test; window.__ggLabel = label;
+  if (/[?&]fallback=1(&|$)/.test(location.search) || !window.fetch) return;
+  try {
+    var ctl = 'AbortController' in window ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 25000);
+    window.__ggEarly = fetch(EXEC + '?cl=' + encodeURIComponent(label) + (test ? '&test=1' : ''),
+      { credentials: 'omit', cache: 'no-store', redirect: 'follow', signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .finally(function () { clearTimeout(timer); });
+    window.__ggEarly.catch(function () {});
+  } catch (e) { window.__ggEarly = null; }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- font loads without blocking the first paint (system font shows until Manrope arrives) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"></noscript>
 <style>
-/* GeekGoodies Shop — page v1.0 (batch 3, 2 Nov 2026). Look "2 · Market" (locked 2 Nov). */
+/* GeekGoodies Shop — page v1.1 (batch 3b polish, 2 Nov 2026). Look "2 · Market" (locked 2 Nov). */
 :root{
   --ink:#14181F; --navy:#1F2C44; --muted:#5A6478; --soft:#7A8294;
   --orange:#E18A2C; --price:#B5600E; --peach:#FFD9A8;
@@ -38,6 +74,7 @@ a{ color:inherit }
 .wm{ font-size:21px; font-weight:800; letter-spacing:-.3px; color:var(--navy); text-decoration:none }
 .cartpill{ display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:0 14px; border:0; border-radius:999px; background:var(--orange); color:#fff; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums }
 .cartpill svg{ width:18px; height:18px }
+.cartpill small{ font-weight:700; font-size:11px; opacity:.9 }
 .cartpill.bump{ animation:bump .35s ease }
 @keyframes bump{ 40%{ transform:scale(1.12) } }
 
@@ -137,6 +174,7 @@ a{ color:inherit }
 .track::-webkit-scrollbar{ display:none }
 .slide{ position:relative; flex:0 0 100%; scroll-snap-align:start; aspect-ratio:1/1; max-height:62vh; display:flex; align-items:center; justify-content:center; padding:14px }
 .slide img{ max-width:100%; max-height:100%; object-fit:contain }
+@media (max-height:740px){ .slide{ max-height:44vh; padding:8px } }   /* small phones: keep name + price in the first screen */
 .dots{ display:flex; justify-content:center; gap:7px; padding:6px 0 2px; min-height:16px }
 .dots button{ width:8px; height:8px; padding:0; border:0; border-radius:999px; background:var(--orange); opacity:.3 }
 .dots button[aria-current="true"]{ opacity:1; width:20px }
@@ -282,7 +320,7 @@ a{ color:inherit }
 (function () {
   'use strict';
   /* ---------------- settings ---------------- */
-  var EXEC = 'https://script.google.com/macros/s/AKfycbxR8AuxpKtwFU_bJXM82Ap86DMsUZlgHDbKXJY_lQXLJzxdZjhZM7TDV_sG4UMdHBB0/exec';
+  var EXEC = window.__ggEXEC || 'https://script.google.com/macros/s/AKfycbxR8AuxpKtwFU_bJXM82Ap86DMsUZlgHDbKXJY_lQXLJzxdZjhZM7TDV_sG4UMdHBB0/exec';
   var FALLBACK = 'products.json';
   var TIMEOUT_MS = 6000;
   var SECTIONS = ['Showpieces & Collectibles', 'Lamps & Lights', 'Kitchen & Dining', 'Home & Décor',
@@ -316,6 +354,8 @@ a{ color:inherit }
   function rs(n) { return '₹' + Number(n || 0).toLocaleString('en-IN'); }
   function pcs(n) { return n + (n === 1 ? ' pc' : ' pcs'); }
   function img(no, n) { return 'img/' + no + '-' + n + '.jpg'; }
+  function thumb(no) { return 'img/t/' + no + '.jpg'; }   // 480 px copy for cards and cart (lighter on slow phones)
+  function dot(s) { s = String(s == null ? '' : s).trim(); return !s || /[.!?)]$/.test(s) ? s : s + '.'; }
   function waNumber() { return String(CFG.whatsapp).replace(/\D/g, ''); }
   function waPretty() { var d = waNumber(); return d.length === 12 ? '+' + d.slice(0, 2) + ' ' + d.slice(2, 7) + ' ' + d.slice(7) : '+' + d; }
   function minRs() { return Number(CFG.min_order_rs) || 1000; }
@@ -328,14 +368,7 @@ a{ color:inherit }
   var arrowSvg = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8M9 8h7v7"/></svg>';
   var waSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>';
 
-  function clientLabel() {
-    var ua = navigator.userAgent;
-    return (/WhatsApp/i.test(ua) ? 'WhatsApp in-app' : /; wv\)/.test(ua) ? 'Android in-app (WebView)' :
-      /FBAN|FBAV|Instagram/i.test(ua) ? 'FB/Insta in-app' : /CriOS|Chrome/i.test(ua) ? 'Chrome' :
-      /Safari/i.test(ua) ? 'Safari' : 'Other') + ' · ' +
-      (/Android/i.test(ua) ? 'Android' : /iPhone|iPad/i.test(ua) ? 'iOS' : /Windows/i.test(ua) ? 'Windows' : /Mac/i.test(ua) ? 'Mac' : 'other OS') +
-      ' · shop v1.0' + (TEST ? ' · test' : '');
-  }
+  function clientLabel() { return window.__ggLabel || 'unknown · shop v1.1' + (TEST ? ' · test' : ''); }
   function newId() {
     var d = new Date(Date.now() + 5.5 * 3600 * 1000);   // IST date
     var p2 = function (n) { return String(n).padStart(2, '0'); };
@@ -392,7 +425,8 @@ a{ color:inherit }
     }
     if (FORCE_FALLBACK) { useFallback('forced'); return; }
     var timer = setTimeout(function () { useFallback('slow (over ' + TIMEOUT_MS / 1000 + ' s)'); }, TIMEOUT_MS);
-    fetchJSON(live, 25000).then(function (d) {
+    var livePromise = window.__ggEarly || fetchJSON(live, 25000);   // started in <head> when possible
+    livePromise.then(function (d) {
       if (!valid(d)) throw new Error('empty');
       liveDone = true; clearTimeout(timer);
       start(d, false, fallbackShown);
@@ -431,7 +465,7 @@ a{ color:inherit }
     $('intro1').textContent = CFG.intro_line1;
     $('intro2').textContent = CFG.intro_line2;
     var strip = CFG.strip ? String(CFG.strip).split('·').map(function (s) { return s.trim(); }).filter(Boolean)
-      : ['Min order ' + rs(minRs()), 'Pickup: Gangapur Road', 'Courier anywhere in India', CFG.gst_note];
+      : ['Any quantity · mix designs', 'Under ' + rs(minRs()) + ': pickup only', 'Pickup: Gangapur Road', 'Courier anywhere in India', CFG.gst_note];
     $('strip').innerHTML = strip.map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('');
     $('q').placeholder = 'Search ' + products.length + ' products';
     renderFoot();
@@ -439,7 +473,7 @@ a{ color:inherit }
   function renderFoot() {
     var chatUrl = 'https://wa.me/' + waNumber() + '?text=' + encodeURIComponent('Hi ' + CFG.shop_name + ', I saw your clearance list.');
     $('foot').innerHTML = '<b>' + esc(CFG.footer_line) + '</b>' +
-      '<p>' + esc(CFG.min_order_note) + '.</p><p>' + esc(CFG.pickup_note) + '.</p><p>' + esc(CFG.delivery_note) + '</p><p>Prices are per piece, ' + esc(String(CFG.gst_note).toLowerCase()) + '.</p>' +
+      '<p>' + esc(dot(CFG.min_order_note)) + '</p><p>' + esc(dot(CFG.pickup_note)) + '</p><p>' + esc(dot(CFG.delivery_note)) + '</p><p>Prices are for each piece or set as listed. ' + esc(dot(CFG.gst_note)) + '</p>' +
       '<a class="wa" href="' + chatUrl + '" target="_blank" rel="noopener">' + waSvg.replace('<svg', '<svg width="18" height="18"') + 'WhatsApp ' + esc(waPretty()) + '</a>';
   }
   function renderChips() {
@@ -475,11 +509,12 @@ a{ color:inherit }
   }
   function photoHtml(p, n, cls, lazy) {
     if (!p.photos) return '<span class="noimg">Photo on WhatsApp</span>';
+    if (cls === 'thumb') return '<img src="' + thumb(p.no) + '" alt="' + esc(p.name) + '"' + (lazy ? ' loading="lazy"' : '') + ' decoding="async" width="480" height="480" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=\'' + img(p.no, 1) + '\'}else{this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'noimg\',textContent:\'Photo on WhatsApp\'}))}">';
     return '<img src="' + img(p.no, n) + '" alt="' + (n === 1 ? esc(p.name) : '') + '"' + (lazy ? ' loading="lazy"' : '') + ' decoding="async" width="800" height="800" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'noimg\',textContent:\'Photo on WhatsApp\'}))">';
   }
   function cardHtml(p, i) {
     return '<article class="card" data-no="' + p.no + '">' +
-      '<button class="ph" type="button" data-open="' + p.no + '" aria-label="Open ' + esc(p.name) + '">' + photoHtml(p, 1, '', i > 5) +
+      '<button class="ph" type="button" data-open="' + p.no + '" aria-label="Open ' + esc(p.name) + '">' + photoHtml(p, 1, 'thumb', i > 5) +
       (isFew(p) ? '<span class="few">Few left</span>' : '') + '<span class="cno">No. ' + p.no + '</span></button>' +
       '<a class="nm" href="#p' + p.no + '" data-open="' + p.no + '">' + esc(p.name) + '</a>' +
       '<div class="pr"><b>' + rs(p.price) + '</b>' + (p.gst ? '<small>+ GST</small>' : '') + '</div>' +
@@ -512,8 +547,8 @@ a{ color:inherit }
   }
   function renderCartUI(bump) {
     var t = totals();
-    $('pilltxt').textContent = t.lines ? t.pieces + ' · ' + rs(t.amount) : 'Cart';
-    $('cartpill').setAttribute('aria-label', t.lines ? 'Open cart, ' + t.lines + ' items, ' + rs(t.amount) : 'Open cart, empty');
+    $('pilltxt').innerHTML = t.lines ? esc(rs(t.amount)) + (t.gst ? ' <small>+ GST</small>' : '') : 'Cart';
+    $('cartpill').setAttribute('aria-label', t.lines ? 'Open cart, ' + t.lines + ' items, ' + pcs(t.pieces) + ', ' + rs(t.amount) + (t.gst ? ' plus GST' : '') : 'Open cart, empty');
     if (bump) { var pill = $('cartpill'); pill.classList.remove('bump'); void pill.offsetWidth; pill.classList.add('bump'); }
     $('cbar').classList.toggle('on', t.lines > 0 && !$('cartov').classList.contains('on') && !$('pov').classList.contains('on'));
     $('cbarl').textContent = 'View cart · ' + t.lines + (t.lines === 1 ? ' item' : ' items');
@@ -545,7 +580,7 @@ a{ color:inherit }
     var keepFocus = document.activeElement && document.activeElement.id;
     var lines = cart.map(function (l) {
       var p = byNo[l.no], over = l.qty > stockLimit(p);
-      return '<li class="cl"><div>' + (p.photos ? '<img src="' + img(p.no, 1) + '" alt="" loading="lazy">' : '<span class="ni"></span>') + '</div>' +
+      return '<li class="cl"><div>' + (p.photos ? '<img src="' + thumb(p.no) + '" alt="" loading="lazy">' : '<span class="ni"></span>') + '</div>' +
         '<div class="t"><b>No. ' + p.no + ' ' + esc(p.name) + '</b><small>' + rs(p.price) + ' each' + (p.gst ? ' + GST' : '') + '</small>' +
         (over ? '<small class="over">More than the stock shown. We confirm on WhatsApp</small>' : '') +
         '<button class="rm" type="button" data-rm="' + p.no + '">Remove</button></div>' +
@@ -622,8 +657,8 @@ a{ color:inherit }
       (n > 1 ? '<button class="gnav prev" type="button" data-g="-1" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m15 5-7 7 7 7"/></svg></button><button class="gnav next" type="button" data-g="1" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg></button>' : '') +
       '<div class="dots" id="dots">' + (n > 1 ? dots : '') + '</div></div>' +
       '<div class="pbody"><div class="sec">' + esc(p.section) + '</div><h2 id="ptitle">' + esc(p.name) + '</h2>' +
-      '<div class="pr"><b>' + rs(p.price) + '</b><small>per piece' + (p.gst ? ' + GST' : '') + '</small></div>' +
-      (hasAmz(p) ? '<a class="amzbtn" href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow">On Amazon' + (p.amazon_price !== '' && p.amazon_price != null ? ' ' + rs(p.amazon_price) : '') + ' · see listing ' + arrowSvg + '</a>' : '') +
+      '<div class="pr"><b>' + rs(p.price) + '</b><small>each' + (p.gst ? ' + GST' : '') + '</small></div>' +
+      (hasAmz(p) ? '<a class="amzbtn" href="' + amzUrl(p) + '" target="_blank" rel="noopener nofollow">On Amazon' + (p.amazon_price !== '' && p.amazon_price != null ? ' ' + rs(p.amazon_price) + ' incl. GST' : '') + ' · see listing ' + arrowSvg + '</a>' : '') +
       '<div class="stock' + (isFew(p) ? ' low' : '') + '"><i></i>' + stock + '</div>' +
       (p.desc ? '<p class="desc">' + esc(p.desc) + '</p>' : '') +
       '<div class="meta">Mix with any other design · No minimum per design' + (hasAmz(p) && p.amazon_date ? '<br>Amazon price as on ' + esc(p.amazon_date) : '') + '</div></div>';
